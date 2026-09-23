@@ -106,3 +106,65 @@
    * **前導領騎員（Lead Guide）**：掌握路線節奏與路況安全。
    * **文化策展講師（Curator）**：於各歷史節點定點開講。
    * **壓後安全員（Tail Sweeper）**：確保無人脫隊，排除簡易鏈條或機械問題。
+
+---
+
+## 🏬 四、各地自行車出租實務與推薦店家（Bike Rental Directory）
+
+### 1. Ride 1 區域｜Udine & Cividale del Friuli
+* **Cicli Mitri（Cividale 總店 / Noleggio 2.0 網絡）**
+  * **簡介**：弗留利東部最大單車網絡，與多間酒莊及旅館合作設有取還車點。
+  * **車種**：高品質 E-bike、Trekking 旅行車、Gravel 礫石車。
+  * **價格參考**：E-bike 約 €35–45/天；一般旅行車 €18–22/天。
+  * **官網與聯絡**：[ciclimitri.it](https://www.ciclimitri.it) ｜ 電話：+39 0432 733842
+* **SlowBike FVG / PromoTurismoFVG Bike Point**
+  * **服務**：提供 Udine 市區取車、Cividale 異地還車與自行車接駁 Shuttle（Miotti NCC）支援。
+
+---
+
+### 2. Ride 2 區域｜Palmanova ➔ Aquileia ➔ Grado (Alpe Adria FVG1)
+* **Palmanova E-Bike Rent（帕爾馬諾瓦）**
+  * **地點**：Palmanova 聖馬可門古城區（Borgo Cividale / Porta San Marco）。
+  * **特色**：專為 FVG1 尾段騎士設計，支援 Palmanova 起騎、Grado 異地回收（One-Way Drop-off）。
+  * **車種**：Bosch 電機長續航電輔車、防刺平把旅行車、附大容量側袋。
+  * **價格參考**：E-bike €40–50/天；甲租乙還服務費 €15–20/車。
+  * **官網**：[palmanovaebikerent.com](https://www.palmanovaebikerent.com)
+* **Papin Sport / Veloce Rental（跨國甲租乙還品牌）**
+  * **服務**：Alpe Adria 官方合作大廠，在 Grado 設有固定還車據點（Grado Mandracchio）。
+
+---
+
+### 3. Ride 3 區域｜Slovenia (Bled 湖區 & Radovljica)
+* **Helia Cycling Slovenia（斯洛維尼亞龍頭自行車旅遊與租賃機構）**
+  * **總部地址**：Triglavska cesta 39, 4260 Bled, Slovenia
+  * **服務範疇**：提供全斯洛維尼亞飯店送車到府（Hotel Delivery & Pick-up），涵蓋 Bled、Radovljica 與 Bohinj。
+  * **車種**：Touring E-bike、Gravel Bike、公路車、全套防爆修車工具。
+  * **價格參考**：E-Touring €38–45/天；Gravel €30–35/天。
+  * **官網與聯絡**：[cyclingslovenia.com](https://cyclingslovenia.com) / [rentabike.si](https://www.rentabike.si) ｜ WhatsApp: +386 31 544 544 ｜ Email: info@helia.si
+* **Polka Bikes Bled / TIC Radovljica**
+  * **地點**：Bled 湖畔門市與 Radovljica 遊客中心，適合散客當日臨時租用。
+
+---
+
+### 4. Ride 4 區域｜Piran & Portorož (Parenzana 舊鐵道)
+* **eBike Slovenia / Rent a Bike Piran（波爾托羅日 & 皮蘭）**
+  * **地點**：Portorož 濱海港灣區 / Piran 塔爾蒂尼廣場周邊。
+  * **特色**：專為 Parenzana 舊鐵道碎石與隧道地貌配置防滑寬胎 E-MTB 與碎石旅行車，附隧道強光車燈。
+  * **價格參考**：E-bike 約 €35–45/天；海岸休閒車 €20/天。
+  * **官網**：[ebikeslovenia.eu](https://ebikeslovenia.eu) ｜ 電話：+386 40 500 000
+* **Parenzana Bike Center（Lucija）**
+  * **服務**：舊鐵道沿線補給站，支援一路騎進克羅埃西亞（Poreč）的跨國甲租乙還預約。
+
+---
+
+### 💡 五、團體移動講堂後勤實務建議（15–25人 B2B 批次模式）
+
+1. **出發前 30–60 天預約派車**：
+   * 義大利段統一由 **PromoTurismoFVG 認證車商（如 Cicli Mitri / Palmanova E-bike）** 承接。
+   * 斯洛維尼亞段統一由 **Helia Cycling** 承接。
+2. **貨車定點起送 ＋ 終點整批收回**：
+   * 車行貨車直接將調校好座椅高度的車隊送達當日起點（如 Day 4 的 Palmanova 聖馬可門）。
+   * 騎抵終點（Grado 潟湖海港）後，由租車商原車收回，學員直接步入餐廳或登上大巴，免去牽車還車困擾。
+3. **車隊配比黃金組合**：
+   * 建議全團配置 **60% E-bike（電輔車）+ 40% Trekking（輕量休閒車）**，現場依學員體能隨時彈性調整。
+
