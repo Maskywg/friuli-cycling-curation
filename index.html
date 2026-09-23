@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Serif+TC:wght@400;600;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Noto+Serif+TC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -25,52 +25,69 @@
     .font-cinzel {
       font-family: 'Cinzel', serif;
     }
-    .hero-pattern {
-      background-color: #0b111e;
-      background-image: radial-gradient(#1e293b 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #475569;
+      background: #cbd5e1;
       border-radius: 9999px;
     }
-    .glass-card {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
     #map {
-      height: 520px;
+      height: 560px;
+      width: 100%;
       z-index: 10;
+    }
+    .custom-badge-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      color: white;
+      font-weight: 800;
+      font-size: 11px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      border: 2px solid white;
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      padding: 4px;
+    }
+    .leaflet-popup-content {
+      margin: 8px 12px;
+      line-height: 1.5;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-amber-500 selection:text-slate-950">
+<body class="bg-slate-50 text-slate-800 min-h-screen selection:bg-amber-500 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-slate-900 text-slate-200 text-xs py-2 px-4 text-center font-medium border-b border-slate-800 flex items-center justify-center space-x-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span>義大利極東・弗留利—斯洛維尼亞—克羅埃西亞 12 天移動講堂 × 4大精選雙輪踏查路線</span>
+  </div>
 
   <!-- Navigation Bar -->
-  <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-emerald-500 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-emerald-600 flex items-center justify-center text-white font-bold shadow-md shadow-amber-500/20">
           <i data-lucide="bike" class="w-6 h-6"></i>
         </div>
         <div>
-          <span class="font-cinzel tracking-wider text-xs text-amber-400 block font-bold uppercase">Friuli • Slovenia • Istria</span>
-          <h1 class="font-serif-tc text-base sm:text-lg font-bold text-slate-50 tracking-tight">義大利極東 12 天移動講堂 × 單車踏查</h1>
+          <span class="font-cinzel tracking-wider text-[11px] text-amber-700 block font-bold uppercase">Friuli • Slovenia • Istria</span>
+          <h1 class="font-serif-tc text-base sm:text-lg font-bold text-slate-900 tracking-tight">極東義大利移動講堂 × 單車踏查</h1>
         </div>
       </div>
-      <nav class="hidden md:flex items-center space-x-6 text-sm">
-        <a href="#philosophy" class="text-slate-300 hover:text-amber-400 transition">策展理念</a>
-        <a href="#overview" class="text-slate-300 hover:text-amber-400 transition">12天日程表</a>
-        <a href="#routes" class="text-slate-300 hover:text-amber-400 transition">4大踏查路線</a>
-        <a href="#map-section" class="text-slate-300 hover:text-amber-400 transition">互動地圖</a>
-        <a href="#logistics" class="text-slate-300 hover:text-amber-400 transition">後勤與支援</a>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+        <a href="#philosophy" class="text-slate-600 hover:text-amber-600 transition">策展理念</a>
+        <a href="#overview" class="text-slate-600 hover:text-amber-600 transition">12天日程表</a>
+        <a href="#map-section" class="text-slate-600 hover:text-amber-600 transition">🗺️ 互動明亮地圖</a>
+        <a href="#routes" class="text-slate-600 hover:text-amber-600 transition">4大踏查路線</a>
+        <a href="#logistics" class="text-slate-600 hover:text-amber-600 transition">後勤與車隊</a>
       </nav>
-      <a href="https://maskywg.github.io/friuli-far-east/" target="_blank" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 transition flex items-center space-x-1.5">
+      <a href="https://maskywg.github.io/friuli-far-east/" target="_blank" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition flex items-center space-x-1.5 shadow-sm">
         <span>原行程網頁</span>
         <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
       </a>
@@ -78,54 +95,54 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative hero-pattern py-20 overflow-hidden border-b border-slate-800">
+  <section class="relative bg-gradient-to-b from-amber-50/60 via-white to-slate-50 py-16 sm:py-20 border-b border-slate-200 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
         <div class="lg:col-span-7 space-y-6">
-          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
             <i data-lucide="compass" class="w-3.5 h-3.5"></i>
-            <span>文化深旅 × 雙輪踏查新維度</span>
+            <span>文化深旅 × 雙輪踏查全新企劃</span>
           </div>
           
-          <h2 class="font-serif-tc text-3xl sm:text-5xl lg:text-6xl font-black text-slate-50 tracking-tight leading-tight">
+          <h2 class="font-serif-tc text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
             從星形要塞，<br/>
-            騎到<span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-300">羅馬帝國的海</span>。
+            騎到<span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-emerald-600 to-teal-600">羅馬帝國的海</span>。
           </h2>
 
-          <blockquote class="border-l-2 border-amber-500/70 pl-4 py-1 text-slate-300 font-serif-tc italic text-sm sm:text-base leading-relaxed">
+          <blockquote class="border-l-4 border-amber-500 pl-4 py-1.5 text-slate-700 font-serif-tc text-sm sm:text-base leading-relaxed bg-amber-50/70 rounded-r-xl">
             「邊界不是一條線，而是一疊地層；道路不是單純的位移，而是文明交會的切片。<br class="hidden sm:inline"/>
             帝國築道、蠻族行軍、鐵路橫貫、國境切斷——今天我們用雙輪重新連起這片土地。」
           </blockquote>
 
           <!-- Quick Stats Cards -->
-          <div class="grid grid-cols-3 gap-4 pt-4">
-            <div class="glass-card rounded-2xl p-4 text-center border-slate-800">
-              <div class="text-amber-400 text-2xl sm:text-3xl font-bold font-cinzel">4 段</div>
-              <div class="text-slate-400 text-xs mt-1">精選歷史單車道</div>
+          <div class="grid grid-cols-3 gap-4 pt-2">
+            <div class="bg-white rounded-2xl p-4 text-center border border-slate-200 shadow-sm">
+              <div class="text-amber-600 text-2xl sm:text-3xl font-extrabold font-cinzel">4 段</div>
+              <div class="text-slate-500 text-xs mt-1 font-medium">精選歷史單車道</div>
             </div>
-            <div class="glass-card rounded-2xl p-4 text-center border-slate-800">
-              <div class="text-emerald-400 text-2xl sm:text-3xl font-bold font-cinzel">~119 km</div>
-              <div class="text-slate-400 text-xs mt-1">全趟踏查里程</div>
+            <div class="bg-white rounded-2xl p-4 text-center border border-slate-200 shadow-sm">
+              <div class="text-emerald-600 text-2xl sm:text-3xl font-extrabold font-cinzel">~119 km</div>
+              <div class="text-slate-500 text-xs mt-1 font-medium">全趟踏查里程</div>
             </div>
-            <div class="glass-card rounded-2xl p-4 text-center border-slate-800">
-              <div class="text-teal-400 text-2xl sm:text-3xl font-bold font-cinzel">SAG Wagon</div>
-              <div class="text-slate-400 text-xs mt-1">大巴全程隨行補給</div>
+            <div class="bg-white rounded-2xl p-4 text-center border border-slate-200 shadow-sm">
+              <div class="text-teal-600 text-2xl sm:text-3xl font-extrabold font-cinzel">SAG Wagon</div>
+              <div class="text-slate-500 text-xs mt-1 font-medium">大巴隨行免負重</div>
             </div>
           </div>
         </div>
 
         <!-- Featured Image Card -->
         <div class="lg:col-span-5 relative">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/60 group">
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white group">
             <img src="./TFF017376.jpg" alt="Grado 潟湖跨海自行車道" class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 right-4 p-4 glass-card rounded-2xl border-slate-700/50">
-              <div class="flex items-center space-x-2 text-amber-400 text-xs font-semibold">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                <span>Alpe Adria FVG1 終點・Grado 潟湖跨海長堤</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-lg text-slate-900">
+              <div class="flex items-center space-x-2 text-emerald-700 text-xs font-bold">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                <span>Alpe Adria FVG1 經典終點・Grado 跨海長堤</span>
               </div>
-              <p class="text-xs text-slate-300 mt-1 font-serif-tc">兩側皆為碧藍水色，騎向亞德里亞海的絕景路段。</p>
+              <p class="text-xs text-slate-600 mt-1 font-serif-tc">兩側皆為明亮海景與潟湖群鳥，直通亞德里亞海。</p>
             </div>
           </div>
         </div>
@@ -134,67 +151,153 @@
     </div>
   </section>
 
-  <!-- Section 1: Philosophy -->
-  <section id="philosophy" class="py-16 bg-slate-900/60 border-b border-slate-800/80">
+  <!-- Interactive Map Section -->
+  <section id="map-section" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Curation Philosophy</span>
-        <h3 class="font-serif-tc text-2xl sm:text-3xl font-bold text-slate-100 mt-2">為什麼在極東義大利加入雙輪？</h3>
-        <p class="text-slate-400 text-sm mt-3">跳脫傳統走馬看花，以 15km/h 的視角讀懂阿爾卑斯到亞德里亞海的重層文明。</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-card rounded-2xl p-6 hover:border-amber-500/40 transition">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4">
-            <i data-lucide="layers" class="w-6 h-6"></i>
+      
+      <!-- Section Header & Controls -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-6">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 mb-2">
+            <i data-lucide="map" class="w-3.5 h-3.5"></i>
+            <span>高解析明亮戶外地圖</span>
           </div>
-          <h4 class="font-serif-tc text-lg font-bold text-slate-100 mb-2">1. 歷史動線的實體體感</h4>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            倫巴底人如何越過隘口？羅馬水軍如何自 Aquileia 內河港航向帝國之海？親自踏踩踏板，感受微地形與河流走向，理解古代軍事地理的必然。
-          </p>
+          <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900">自行車踏查路線全景互動地圖</h3>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1">清晰呈現阿爾卑斯山脈、弗留利平原、斯洛維尼亞河谷與伊斯特利亞海岸線。</p>
         </div>
 
-        <div class="glass-card rounded-2xl p-6 hover:border-emerald-500/40 transition">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
+        <!-- Map Layer & Route Filter Controls -->
+        <div class="flex flex-col sm:flex-row gap-3">
+          
+          <!-- Base Map Selector -->
+          <div class="bg-slate-100 p-1.5 rounded-xl border border-slate-200 flex items-center space-x-1 shadow-inner text-xs font-semibold">
+            <span class="text-slate-500 px-2 text-[11px]">底圖：</span>
+            <button onclick="changeBaseMap('voyager')" id="btn-bm-voyager" class="px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition">明亮旅遊</button>
+            <button onclick="changeBaseMap('topo')" id="btn-bm-topo" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">精緻地形</button>
+            <button onclick="changeBaseMap('osm')" id="btn-bm-osm" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">標準街道</button>
+            <button onclick="changeBaseMap('satellite')" id="btn-bm-satellite" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">真實衛星</button>
           </div>
-          <h4 class="font-serif-tc text-lg font-bold text-slate-100 mb-2">2. 頂級成熟的歐洲單車網</h4>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            路線精選歐洲排名前列的 FVG1（Alpe Adria）、Parenzana 舊鐵道與斯洛維尼亞國家河谷道，全線專用道與平整鋪面，遠離繁忙車潮，極致安全。
-          </p>
-        </div>
 
-        <div class="glass-card rounded-2xl p-6 hover:border-teal-500/40 transition">
-          <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-4">
-            <i data-lucide="bus" class="w-6 h-6"></i>
-          </div>
-          <h4 class="font-serif-tc text-lg font-bold text-slate-100 mb-2">3. 移動講堂 + SAG 車隊模式</h4>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            大巴全程作為 SAG（Support and Gear）補給車，行李不離車。全隊配置 E-bike 電輔車選項，體力不適可隨時上車，保留充裕精力聽課與探訪。
-          </p>
         </div>
       </div>
+
+      <!-- Route Selector Buttons -->
+      <div class="flex flex-wrap gap-2.5 mb-4">
+        <button onclick="focusRoute('all')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 shadow-sm transition flex items-center space-x-1.5">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span>全覽 4 段路線</span>
+        </button>
+        <button onclick="focusRoute('r1')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500 text-white hover:bg-amber-600 shadow-sm transition flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          <span>Ride 1 (Udine → Cividale, 25km)</span>
+        </button>
+        <button onclick="focusRoute('r2')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm transition flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          <span>Ride 2 (Palmanova → Grado, 38km ⭐)</span>
+        </button>
+        <button onclick="focusRoute('r3')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white hover:bg-teal-700 shadow-sm transition flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          <span>Ride 3 (Radovljica → Bled, 34km)</span>
+        </button>
+        <button onclick="focusRoute('r4')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          <span>Ride 4 (Parenzana → 鹽田, 22km)</span>
+        </button>
+      </div>
+
+      <!-- Map Container -->
+      <div class="rounded-3xl overflow-hidden border-2 border-slate-200 shadow-xl relative bg-slate-100">
+        <div id="map"></div>
+        
+        <!-- Floating Map Legend -->
+        <div class="absolute bottom-5 right-5 z-[1000] bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200 shadow-lg text-xs space-y-1.5 hidden sm:block">
+          <div class="font-bold text-slate-800 text-[11px] uppercase tracking-wider mb-1">路線圖例</div>
+          <div class="flex items-center space-x-2">
+            <span class="w-4 h-1.5 rounded-full bg-amber-500"></span>
+            <span class="text-slate-700 font-medium">Ride 1: 倫巴底歷史走廊 (25km)</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="w-4 h-1.5 rounded-full bg-emerald-600"></span>
+            <span class="text-slate-700 font-medium">Ride 2: 星形要塞至亞德里亞海 (38km)</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="w-4 h-1.5 rounded-full bg-teal-600"></span>
+            <span class="text-slate-700 font-medium">Ride 3: 阿爾卑斯山麓與Bled湖 (34km)</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="w-4 h-1.5 rounded-full bg-indigo-600"></span>
+            <span class="text-slate-700 font-medium">Ride 4: Parenzana 百年舊鐵道 (22km)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Route Stat Summary Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+        <div onclick="focusRoute('r1')" class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 cursor-pointer hover:bg-amber-100/70 transition">
+          <div class="text-amber-800 font-bold text-xs">Ride 1・Day 3</div>
+          <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Udine → Cividale</div>
+          <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
+            <span>25 km</span>
+            <span>+79m 爬升</span>
+            <span>2.0 hrs</span>
+          </div>
+        </div>
+
+        <div onclick="focusRoute('r2')" class="bg-emerald-50/70 p-4 rounded-2xl border-2 border-emerald-300 cursor-pointer hover:bg-emerald-100/70 transition">
+          <div class="text-emerald-800 font-bold text-xs flex items-center justify-between">
+            <span>Ride 2・Day 4</span>
+            <span class="px-1.5 py-0.2 bg-emerald-200 text-emerald-900 rounded text-[10px] font-bold">最推薦</span>
+          </div>
+          <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Palmanova → Grado</div>
+          <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
+            <span>38 km</span>
+            <span>-110m 微下坡</span>
+            <span>2.5 hrs</span>
+          </div>
+        </div>
+
+        <div onclick="focusRoute('r3')" class="bg-teal-50/70 p-4 rounded-2xl border border-teal-200/80 cursor-pointer hover:bg-teal-100/70 transition">
+          <div class="text-teal-800 font-bold text-xs">Ride 3・Day 6</div>
+          <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Radovljica → Bled</div>
+          <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
+            <span>34 km</span>
+            <span>+240m (E-bike)</span>
+            <span>2.5 hrs</span>
+          </div>
+        </div>
+
+        <div onclick="focusRoute('r4')" class="bg-indigo-50/70 p-4 rounded-2xl border border-indigo-200/80 cursor-pointer hover:bg-indigo-100/70 transition">
+          <div class="text-indigo-800 font-bold text-xs">Ride 4・Day 11</div>
+          <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Piran → Sečovlje 鹽田</div>
+          <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
+            <span>22 km</span>
+            <span>< 50m 平緩</span>
+            <span>1.5 hrs</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- Section 2: 12-Day Itinerary Table -->
-  <section id="overview" class="py-16 bg-slate-950 border-b border-slate-800">
+  <section id="overview" class="py-16 bg-slate-50 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest">Complete Schedule</span>
-          <h3 class="font-serif-tc text-2xl sm:text-3xl font-bold text-slate-100 mt-2">12 天移動講堂騎行分級日程表</h3>
+          <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest">Complete Schedule</span>
+          <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">12 天移動講堂騎行分級日程表</h3>
         </div>
-        <div class="flex items-center space-x-3 text-xs">
-          <span class="inline-flex items-center space-x-1 text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span>主騎乘 (4段)</span></span>
-          <span class="inline-flex items-center space-x-1 text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span>城市短騎</span></span>
-          <span class="inline-flex items-center space-x-1 text-slate-400"><span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span><span>文化走讀/不騎</span></span>
+        <div class="flex items-center space-x-3 text-xs font-semibold">
+          <span class="inline-flex items-center space-x-1 text-amber-700"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span><span>主騎乘 (4段)</span></span>
+          <span class="inline-flex items-center space-x-1 text-emerald-700"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span><span>城市短騎漫遊</span></span>
+          <span class="inline-flex items-center space-x-1 text-slate-500"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span><span>文化走讀/不騎</span></span>
         </div>
       </div>
 
-      <div class="overflow-x-auto custom-scrollbar border border-slate-800 rounded-2xl glass-card">
-        <table class="w-full text-left text-xs sm:text-sm text-slate-300">
-          <thead class="bg-slate-900/90 text-slate-400 text-xs uppercase tracking-wider font-semibold border-b border-slate-800">
+      <div class="overflow-x-auto custom-scrollbar border border-slate-200 rounded-2xl bg-white shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm text-slate-700">
+          <thead class="bg-slate-100 text-slate-600 text-xs uppercase tracking-wider font-bold border-b border-slate-200">
             <tr>
               <th class="py-3.5 px-4">天數</th>
               <th class="py-3.5 px-4">區域與主題</th>
@@ -205,111 +308,111 @@
               <th class="py-3.5 px-4">車種配置</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 font-serif-tc">
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 1</td>
+          <tbody class="divide-y divide-slate-100 font-serif-tc">
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 1</td>
               <td class="py-3.5 px-4">威尼斯機場 → Udine 迎賓</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">遊覽車接駁、Udine 舊城自由漫步與開堂晚宴</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">遊覽車接駁、Udine 舊城自由漫步與開堂晚宴</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 2</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 2</td>
               <td class="py-3.5 px-4">Udine 提也波洛之城</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">總督宮、提也波洛壁畫走讀、主教宮博物館</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">總督宮、提也波洛壁畫走讀、主教宮博物館</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
             </tr>
-            <tr class="bg-amber-500/5 hover:bg-amber-500/10 transition">
-              <td class="py-3.5 px-4 font-bold text-amber-400">Day 3</td>
-              <td class="py-3.5 px-4 font-bold text-slate-100">Udine → Cividale</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-sans font-semibold text-xs border border-amber-500/30">🚲 主騎乘 1</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-200">Udine → Pradamano → Premariacco → Cividale</td>
-              <td class="py-3.5 px-4 text-center font-sans font-bold text-amber-300">25 km / +79m</td>
-              <td class="py-3.5 px-4 text-center text-amber-400">★★☆</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">Trekking / E-bike</td>
+            <tr class="bg-amber-50/80 hover:bg-amber-100/80 transition">
+              <td class="py-3.5 px-4 font-bold text-amber-800">Day 3</td>
+              <td class="py-3.5 px-4 font-bold text-slate-900">Udine → Cividale</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-amber-500 text-white font-sans font-bold text-xs shadow-sm">🚲 主騎乘 1</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-800">Udine → Pradamano → Premariacco → Cividale</td>
+              <td class="py-3.5 px-4 text-center font-sans font-bold text-amber-800">25 km / +79m</td>
+              <td class="py-3.5 px-4 text-center text-amber-700 font-bold">★★☆</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">Trekking / E-bike</td>
             </tr>
-            <tr class="bg-amber-500/10 hover:bg-amber-500/15 transition">
-              <td class="py-3.5 px-4 font-bold text-amber-400">Day 4</td>
-              <td class="py-3.5 px-4 font-bold text-slate-100">Palmanova → Grado</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-sans font-semibold text-xs border border-amber-500/30">🚲 主騎乘 2 (王者)</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-200">星形要塞 → Strassoldo 古堡 → Aquileia → 跨海長堤</td>
-              <td class="py-3.5 px-4 text-center font-sans font-bold text-emerald-400">38 km / -110m</td>
-              <td class="py-3.5 px-4 text-center text-emerald-400">★☆☆ (平緩)</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">一般單車 / Trekking</td>
+            <tr class="bg-emerald-50/90 hover:bg-emerald-100/90 transition">
+              <td class="py-3.5 px-4 font-bold text-emerald-800">Day 4</td>
+              <td class="py-3.5 px-4 font-bold text-slate-900">Palmanova → Grado</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-sans font-bold text-xs shadow-sm">🚲 主騎乘 2 (王者)</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-800">星形要塞 → Strassoldo 古堡 → Aquileia → 跨海長堤</td>
+              <td class="py-3.5 px-4 text-center font-sans font-bold text-emerald-800">38 km / -110m</td>
+              <td class="py-3.5 px-4 text-center text-emerald-700 font-bold">★☆☆ (平緩)</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">一般單車 / Trekking</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 5</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 5</td>
               <td class="py-3.5 px-4">Gorizia / Nova Gorica</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-sans">短騎漫遊</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">跨歐盟無邊界雙城、橫越冷戰分界紅磚線</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-sans font-semibold">短騎漫遊</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">跨歐盟無邊界雙城、橫越冷戰分界紅磚線</td>
               <td class="py-3.5 px-4 text-center font-sans">10 km</td>
-              <td class="py-3.5 px-4 text-center text-emerald-400">★☆☆</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">城市單車</td>
+              <td class="py-3.5 px-4 text-center text-emerald-700">★☆☆</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">城市單車</td>
             </tr>
-            <tr class="bg-amber-500/5 hover:bg-amber-500/10 transition">
-              <td class="py-3.5 px-4 font-bold text-amber-400">Day 6</td>
-              <td class="py-3.5 px-4 font-bold text-slate-100">斯洛維尼亞：Sava 河谷</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-sans font-semibold text-xs border border-amber-500/30">🚲 主騎乘 3 (選配)</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-200">Radovljica 養蜂村 → Sava 冰川河谷 → Bled 湖畔環線</td>
-              <td class="py-3.5 px-4 text-center font-sans font-bold text-amber-300">34 km / +240m</td>
-              <td class="py-3.5 px-4 text-center text-amber-400">★★☆</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">E-bike 首選</td>
+            <tr class="bg-amber-50/80 hover:bg-amber-100/80 transition">
+              <td class="py-3.5 px-4 font-bold text-amber-800">Day 6</td>
+              <td class="py-3.5 px-4 font-bold text-slate-900">斯洛維尼亞：Sava 河谷</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-teal-600 text-white font-sans font-bold text-xs shadow-sm">🚲 主騎乘 3 (選配)</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-800">Radovljica 養蜂村 → Sava 冰川河谷 → Bled 湖畔環線</td>
+              <td class="py-3.5 px-4 text-center font-sans font-bold text-teal-800">34 km / +240m</td>
+              <td class="py-3.5 px-4 text-center text-amber-700 font-bold">★★☆</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">E-bike 首選</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 7</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 7</td>
               <td class="py-3.5 px-4">Bled 湖區深度走讀</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">湖心小島傳統 Pletna 木船、布萊德城堡露天講堂</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">湖心小島傳統 Pletna 木船、布萊德城堡露天講堂</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 8</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 8</td>
               <td class="py-3.5 px-4">盧比安納 (Ljubljana)</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-sans">短騎漫遊</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">普雷契尼克建築群、三重橋、綠意之都河畔騎行</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-sans font-semibold">短騎漫遊</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">普雷契尼克建築群、三重橋、綠意之都河畔騎行</td>
               <td class="py-3.5 px-4 text-center font-sans">10 km</td>
-              <td class="py-3.5 px-4 text-center text-emerald-400">★☆☆</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">城市共享單車</td>
+              <td class="py-3.5 px-4 text-center text-emerald-700">★☆☆</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">城市共享單車</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 9</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 9</td>
               <td class="py-3.5 px-4">喀斯特 Postojna / Predjama</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">世界級鐘乳石洞地底小火車、洞窟城堡地質踏查</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">世界級鐘乳石洞地底小火車、洞窟城堡地質踏查</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 10</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 10</td>
               <td class="py-3.5 px-4">克羅埃西亞：Rovinj / Poreč</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">尤弗拉西烏斯聖殿金色馬賽克、羅維尼威尼斯衛城</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">尤弗拉西烏斯聖殿金色馬賽克、羅維尼威尼斯衛城</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
             </tr>
-            <tr class="bg-amber-500/5 hover:bg-amber-500/10 transition">
-              <td class="py-3.5 px-4 font-bold text-amber-400">Day 11</td>
-              <td class="py-3.5 px-4 font-bold text-slate-100">Piran → Sečovlje</td>
-              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-sans font-semibold text-xs border border-amber-500/30">🚲 主騎乘 4</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-200">Parenzana 舊鐵道 → Valeta 磚石隧道 → 海鹽田濕地</td>
-              <td class="py-3.5 px-4 text-center font-sans font-bold text-emerald-400">22 km / +40m</td>
-              <td class="py-3.5 px-4 text-center text-emerald-400">★☆☆</td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-300">Trekking / E-bike</td>
+            <tr class="bg-indigo-50/80 hover:bg-indigo-100/80 transition">
+              <td class="py-3.5 px-4 font-bold text-indigo-900">Day 11</td>
+              <td class="py-3.5 px-4 font-bold text-slate-900">Piran → Sečovlje</td>
+              <td class="py-3.5 px-4"><span class="px-2.5 py-0.5 rounded-full bg-indigo-600 text-white font-sans font-bold text-xs shadow-sm">🚲 主騎乘 4</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-800">Parenzana 舊鐵道 → Valeta 磚石隧道 → 海鹽田濕地</td>
+              <td class="py-3.5 px-4 text-center font-sans font-bold text-indigo-900">22 km / +40m</td>
+              <td class="py-3.5 px-4 text-center text-emerald-700 font-bold">★☆☆</td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-700">Trekking / E-bike</td>
             </tr>
-            <tr class="hover:bg-slate-900/40">
-              <td class="py-3.5 px-4 font-bold text-slate-400">Day 12</td>
+            <tr class="hover:bg-slate-50/80">
+              <td class="py-3.5 px-4 font-bold text-slate-500">Day 12</td>
               <td class="py-3.5 px-4">Trieste → 回程</td>
-              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-xs">不騎乘</span></td>
-              <td class="py-3.5 px-4 font-sans text-xs text-slate-400">義大利統一廣場海景咖啡、米拉馬雷城堡、專車往機場</td>
+              <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">不騎乘</span></td>
+              <td class="py-3.5 px-4 font-sans text-xs text-slate-600">義大利統一廣場海景咖啡、米拉馬雷城堡、專車往機場</td>
               <td class="py-3.5 px-4 text-center font-sans">0 km</td>
               <td class="py-3.5 px-4 text-center">-</td>
               <td class="py-3.5 px-4 font-sans text-xs text-slate-500">-</td>
@@ -321,59 +424,59 @@
   </section>
 
   <!-- Section 3: Detailed 4 Route Cards -->
-  <section id="routes" class="py-16 bg-slate-900/40 border-b border-slate-800">
+  <section id="routes" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">In-Depth Curated Rides</span>
-        <h3 class="font-serif-tc text-2xl sm:text-3xl font-bold text-slate-100 mt-2">四大主題騎乘深度剖析</h3>
+        <span class="text-amber-700 font-bold text-xs uppercase tracking-widest">In-Depth Curated Rides</span>
+        <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">四大主題騎乘深度剖析</h3>
       </div>
 
-      <div class="space-y-12">
+      <div class="space-y-10">
         
         <!-- Ride 1 -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 hover:border-amber-500/40 transition">
+        <div class="bg-amber-50/50 rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-sm hover:shadow-md transition">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <div class="flex items-center space-x-3">
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950">Ride 1・Day 3</span>
-                <span class="text-xs text-slate-400 font-mono">FVG Cycle Circuit R037</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-white shadow-sm">Ride 1・Day 3</span>
+                <span class="text-xs text-amber-900 font-mono font-bold">FVG Cycle Circuit R037</span>
               </div>
-              <h4 class="font-serif-tc text-2xl font-bold text-slate-50">Udine → Cividale：重走倫巴底人的入侵入口</h4>
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-serif-tc">
+              <h4 class="font-serif-tc text-2xl font-extrabold text-slate-900">Udine → Cividale：重走倫巴底人的入侵入口</h4>
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-serif-tc">
                 西元 568 年，阿爾博因王率領倫巴底大軍翻越東阿爾卑斯山，在 Cividale 建立了義大利本土第一個公國。我們由西向東反向騎行，雙輪穿過文藝復興平原農莊與碧綠的納蒂索內河（Natisone）吊橋，直抵世界遺產小堂與魔鬼橋。
               </p>
-              <div class="flex flex-wrap gap-4 pt-2 text-xs font-mono">
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">里程：</span><span class="text-amber-300 font-bold">25 km</span>
+              <div class="flex flex-wrap gap-3 pt-2 text-xs font-mono">
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm">
+                  <span class="text-slate-500">里程：</span><span class="text-amber-700 font-bold">25 km</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">爬升：</span><span class="text-amber-300 font-bold">+79 m</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm">
+                  <span class="text-slate-500">爬升：</span><span class="text-amber-700 font-bold">+79 m</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">耗時：</span><span class="text-amber-300 font-bold">約 2 小時</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm">
+                  <span class="text-slate-500">耗時：</span><span class="text-amber-700 font-bold">約 2 小時</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">後勤：</span><span class="text-emerald-400 font-bold">大巴在 Cividale 接收行李</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm">
+                  <span class="text-slate-500">後勤：</span><span class="text-emerald-700 font-bold">大巴在 Cividale 接收行李</span>
                 </div>
               </div>
             </div>
             <div class="lg:col-span-5">
-              <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
-                <div class="font-bold text-amber-400 flex items-center space-x-2">
+              <div class="bg-white p-5 rounded-2xl border border-amber-200 shadow-sm space-y-3 text-xs">
+                <div class="font-bold text-amber-800 flex items-center space-x-2">
                   <i data-lucide="milestone" class="w-4 h-4"></i>
                   <span>歷史策展停靠點</span>
                 </div>
-                <ul class="space-y-2 text-slate-300">
+                <ul class="space-y-2 text-slate-700">
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5"></span>
                     <span><strong>Pradamano 田園綠廊</strong>：弗留利平原灌溉渠與古農莊。</span>
                   </li>
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5"></span>
                     <span><strong>Premariacco 吊橋</strong>：眺望阿爾卑斯冰川融水切割出的碧綠納蒂索內河谷。</span>
                   </li>
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5"></span>
                     <span><strong>Cividale 魔鬼橋 & 倫巴底小堂</strong>：步入 8 世紀神秘灰泥雕刻遺跡。</span>
                   </li>
                 </ul>
@@ -383,39 +486,38 @@
         </div>
 
         <!-- Ride 2 -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-500/40 bg-slate-900/80 relative overflow-hidden">
-          <div class="absolute -right-12 -top-12 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="bg-emerald-50/60 rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 shadow-md relative overflow-hidden">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <div class="flex items-center space-x-3">
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-amber-500 to-emerald-400 text-slate-950">Ride 2・Day 4（⭐ 王者旗艦）</span>
-                <span class="text-xs text-amber-400 font-mono">Alpe Adria Cycle Route FVG1</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-sm">Ride 2・Day 4（⭐ 王者旗艦）</span>
+                <span class="text-xs text-emerald-900 font-mono font-bold">Alpe Adria Cycle Route FVG1</span>
               </div>
-              <h4 class="font-serif-tc text-2xl font-bold text-slate-50">Palmanova → Aquileia → Grado：從星形要塞騎到羅馬帝國的海</h4>
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-serif-tc">
+              <h4 class="font-serif-tc text-2xl font-extrabold text-slate-900">Palmanova → Aquileia → Grado：從星形要塞騎到羅馬帝國的海</h4>
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-serif-tc">
                 全歐最負盛名的跨國單車道 Alpe Adria 壓軸終章。自威尼斯共和國軍事九芒星城出發，穿過哈布斯堡貴族水車古堡 Strassoldo，滑向西羅馬帝國北疆樞紐 Aquileia，最後奔馳在跨海長堤，直抵亞德里亞海上的 Grado 潟湖。
               </p>
-              <div class="flex flex-wrap gap-4 pt-2 text-xs font-mono">
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">里程：</span><span class="text-emerald-300 font-bold">38 km</span>
+              <div class="flex flex-wrap gap-3 pt-2 text-xs font-mono">
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-emerald-200 shadow-sm">
+                  <span class="text-slate-500">里程：</span><span class="text-emerald-700 font-bold">38 km</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">落差：</span><span class="text-emerald-300 font-bold">-114 m (一路微下坡)</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-emerald-200 shadow-sm">
+                  <span class="text-slate-500">落差：</span><span class="text-emerald-700 font-bold">-110 m (一路微下坡)</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">難度：</span><span class="text-emerald-300 font-bold">★☆☆ 絕佳專用道</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-emerald-200 shadow-sm">
+                  <span class="text-slate-500">難度：</span><span class="text-emerald-700 font-bold">★☆☆ 專用道極佳</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">後勤：</span><span class="text-emerald-400 font-bold">Grado 當地收車 / 大巴接駁</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-emerald-200 shadow-sm">
+                  <span class="text-slate-500">後勤：</span><span class="text-emerald-700 font-bold">Grado 當地收車 / 大巴接駁</span>
                 </div>
               </div>
             </div>
             <div class="lg:col-span-5 space-y-4">
-              <div class="rounded-2xl overflow-hidden border border-slate-700">
+              <div class="rounded-2xl overflow-hidden border-2 border-white shadow-md">
                 <img src="./85mu7SnifkZuRn3ssZzzsV77dco_dtrsH2YVZcQ-24AthSVvEN_YzkWXIPlV805004d0fPsv02bn53DCOVFZfgsuXsqSdXCgwiCJmH3vL9LtbVrTUquleHQUiutK5o56V-G0uWZa4DBB3CAtoQ5dEwgsCoRPVAGmJ8PeLQELETPo8zi3jhbgWQllaNwr6F0G.jpeg" alt="Aquileia 羅馬柱廊與單車" class="w-full h-48 object-cover">
               </div>
-              <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800 text-xs text-slate-300">
-                <span class="font-bold text-amber-400 block mb-1">🏛️ 策展地層：</span>
+              <div class="bg-white p-4 rounded-xl border border-emerald-200 shadow-sm text-xs text-slate-700">
+                <span class="font-bold text-emerald-800 block mb-1">🏛️ 策展地層：</span>
                 文藝復興軍事理想 ➔ 中世紀封建城堡 ➔ 4世紀早期基督教馬賽克 ➔ 亞德里亞跨海絕景。
               </div>
             </div>
@@ -423,46 +525,46 @@
         </div>
 
         <!-- Ride 3 -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 hover:border-amber-500/40 transition">
+        <div class="bg-teal-50/50 rounded-3xl p-6 sm:p-8 border border-teal-200 shadow-sm hover:shadow-md transition">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <div class="flex items-center space-x-3">
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-500 text-slate-950">Ride 3・Day 6</span>
-                <span class="text-xs text-slate-400 font-mono">Slovenia Alpine River & Lake Route</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-600 text-white shadow-sm">Ride 3・Day 6</span>
+                <span class="text-xs text-teal-900 font-mono font-bold">Slovenia Alpine River & Lake Route</span>
               </div>
-              <h4 class="font-serif-tc text-2xl font-bold text-slate-50">Radovljica → Bled 湖區：阿爾卑斯河谷與山麓環線</h4>
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-serif-tc">
+              <h4 class="font-serif-tc text-2xl font-extrabold text-slate-900">Radovljica → Bled 湖區：阿爾卑斯河谷與山麓環線</h4>
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-serif-tc">
                 告別單純的走馬看花環湖，我們沿著薩瓦河（Sava Bohinjka）純淨冰川林蔭小徑切入布萊德盆地，從山頂城堡背後的農村角度，俯瞰阿爾卑斯群山懷抱下的祖母綠湖水。
               </p>
-              <div class="flex flex-wrap gap-4 pt-2 text-xs font-mono">
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">里程：</span><span class="text-teal-300 font-bold">34 km</span>
+              <div class="flex flex-wrap gap-3 pt-2 text-xs font-mono">
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-teal-200 shadow-sm">
+                  <span class="text-slate-500">里程：</span><span class="text-teal-700 font-bold">34 km</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">爬升：</span><span class="text-teal-300 font-bold">+240 m</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-teal-200 shadow-sm">
+                  <span class="text-slate-500">爬升：</span><span class="text-teal-700 font-bold">+240 m</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">建議：</span><span class="text-amber-300 font-bold">配備 E-bike 電輔車</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-teal-200 shadow-sm">
+                  <span class="text-slate-500">建議：</span><span class="text-amber-700 font-bold">配備 E-bike 電輔車</span>
                 </div>
               </div>
             </div>
             <div class="lg:col-span-5">
-              <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
-                <div class="font-bold text-teal-400 flex items-center space-x-2">
+              <div class="bg-white p-5 rounded-2xl border border-teal-200 shadow-sm space-y-3 text-xs">
+                <div class="font-bold text-teal-800 flex items-center space-x-2">
                   <i data-lucide="trees" class="w-4 h-4"></i>
                   <span>自然與生態亮點</span>
                 </div>
-                <ul class="space-y-2 text-slate-300">
+                <ul class="space-y-2 text-slate-700">
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5"></span>
                     <span><strong>Radovljica 養蜂文化</strong>：中世紀彩繪蜂箱板與傳統薑餅工坊。</span>
                   </li>
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5"></span>
                     <span><strong>Sava 冰川河畔木橋</strong>：朱利安阿爾卑斯山的清泉林道。</span>
                   </li>
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500 mt-1.5"></span>
                     <span><strong>Bled 湖西岸秘境視角</strong>：午後與遊覽車隊合流搭乘傳統 Pletna 木船。</span>
                   </li>
                 </ul>
@@ -472,42 +574,42 @@
         </div>
 
         <!-- Ride 4 -->
-        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 hover:border-amber-500/40 transition">
+        <div class="bg-indigo-50/50 rounded-3xl p-6 sm:p-8 border border-indigo-200 shadow-sm hover:shadow-md transition">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-4">
               <div class="flex items-center space-x-3">
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500 text-slate-50">Ride 4・Day 11</span>
-                <span class="text-xs text-slate-400 font-mono">Parenzana Trail D8 (The Route of Health)</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-600 text-white shadow-sm">Ride 4・Day 11</span>
+                <span class="text-xs text-indigo-900 font-mono font-bold">Parenzana Trail D8 (The Route of Health)</span>
               </div>
-              <h4 class="font-serif-tc text-2xl font-bold text-slate-50">Piran → Sečovlje：Parenzana 舊鐵道與海鹽之路</h4>
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-serif-tc">
+              <h4 class="font-serif-tc text-2xl font-extrabold text-slate-900">Piran → Sečovlje：Parenzana 舊鐵道與海鹽之路</h4>
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed font-serif-tc">
                 曾連結第里雅斯特與伊斯特利亞的 1902 年奧匈帝國窄軌鐵路，今已化身友誼單車道。穿越 550 公尺長的 Valeta 磚石火車隧道，穿過橄欖園，滑向中世紀至今運作的古法海鹽結晶池與濕地。
               </p>
-              <div class="flex flex-wrap gap-4 pt-2 text-xs font-mono">
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">里程：</span><span class="text-indigo-300 font-bold">22 km</span>
+              <div class="flex flex-wrap gap-3 pt-2 text-xs font-mono">
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-200 shadow-sm">
+                  <span class="text-slate-500">里程：</span><span class="text-indigo-700 font-bold">22 km</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">爬升：</span><span class="text-indigo-300 font-bold">< 50 m (極平緩)</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-200 shadow-sm">
+                  <span class="text-slate-500">爬升：</span><span class="text-indigo-700 font-bold">< 50 m (極平緩)</span>
                 </div>
-                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/60">
-                  <span class="text-slate-400">特色：</span><span class="text-indigo-300 font-bold">百年火車隧道 + 海鹽田生態</span>
+                <div class="bg-white px-3 py-1.5 rounded-xl border border-indigo-200 shadow-sm">
+                  <span class="text-slate-500">特色：</span><span class="text-indigo-700 font-bold">百年火車隧道 + 海鹽田生態</span>
                 </div>
               </div>
             </div>
             <div class="lg:col-span-5">
-              <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
-                <div class="font-bold text-indigo-400 flex items-center space-x-2">
+              <div class="bg-white p-5 rounded-2xl border border-indigo-200 shadow-sm space-y-3 text-xs">
+                <div class="font-bold text-indigo-800 flex items-center space-x-2">
                   <i data-lucide="train" class="w-4 h-4"></i>
                   <span>舊鐵道地景特色</span>
                 </div>
-                <ul class="space-y-2 text-slate-300">
+                <ul class="space-y-2 text-slate-700">
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5"></span>
                     <span><strong>Valeta 隧道（550m）</strong>：穿過百年磚造拱頂，享受清涼穿堂風。</span>
                   </li>
                   <li class="flex items-start space-x-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5"></span>
                     <span><strong>Sečovlje 鹽田自然公園</strong>：威尼斯黃金時期的白色黃金產地。</span>
                   </li>
                 </ul>
@@ -520,75 +622,51 @@
     </div>
   </section>
 
-  <!-- Section 4: Interactive Leaflet Map -->
-  <section id="map-section" class="py-16 bg-slate-950 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-        <div>
-          <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Interactive Cartography</span>
-          <h3 class="font-serif-tc text-2xl sm:text-3xl font-bold text-slate-100 mt-2">自行車踏查路線互動地圖</h3>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">點擊下方按鈕可快速切換並聚焦各段歷史踏查航跡。</p>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="focusRoute('all')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-700 transition">全覽總圖</button>
-          <button onclick="focusRoute('r1')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition">Ride 1 (Udine-Cividale)</button>
-          <button onclick="focusRoute('r2')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 transition">Ride 2 (Palmanova-Grado)</button>
-          <button onclick="focusRoute('r3')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-300 border border-teal-500/40 hover:bg-teal-500/30 transition">Ride 3 (Radovljica-Bled)</button>
-          <button onclick="focusRoute('r4')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 hover:bg-indigo-500/30 transition">Ride 4 (Parenzana-Sečovlje)</button>
-        </div>
-      </div>
-
-      <div class="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl glass-card relative">
-        <div id="map"></div>
-      </div>
-    </div>
-  </section>
-
   <!-- Section 5: Logistics & Safety -->
-  <section id="logistics" class="py-16 bg-slate-900/60">
+  <section id="logistics" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest">Logistics & Safety</span>
-        <h3 class="font-serif-tc text-2xl sm:text-3xl font-bold text-slate-100 mt-2">後勤、E-bike 配置與 SAG Wagon 車隊機制</h3>
+        <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest">Logistics & Safety</span>
+        <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">後勤、E-bike 配置與 SAG Wagon 車隊機制</h3>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-2xl border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-3">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-3">
             <i data-lucide="zap" class="w-5 h-5"></i>
           </div>
-          <h4 class="font-serif-tc text-base font-bold text-slate-100 mb-2">高比例 E-bike 電輔車</h4>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h4 class="font-serif-tc text-base font-bold text-slate-900 mb-2">高比例 E-bike 電輔車</h4>
+          <p class="text-slate-600 text-xs leading-relaxed">
             提供 50%–70% 頂級電輔自行車，爬坡無負擔，消除年齡與體力差距，全員輕鬆跟隊。
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-3">
             <i data-lucide="truck" class="w-5 h-5"></i>
           </div>
-          <h4 class="font-serif-tc text-base font-bold text-slate-100 mb-2">SAG Wagon 大巴後勤</h4>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h4 class="font-serif-tc text-base font-bold text-slate-900 mb-2">SAG Wagon 大巴後勤</h4>
+          <p class="text-slate-600 text-xs leading-relaxed">
             大型行李全程隨車。各停靠點皆有遊覽車待命，體力不適或突遇天候可隨時上車休息。
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-3">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mb-3">
             <i data-lucide="users" class="w-5 h-5"></i>
           </div>
-          <h4 class="font-serif-tc text-base font-bold text-slate-100 mb-2">雙領隊與定點講堂</h4>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h4 class="font-serif-tc text-base font-bold text-slate-900 mb-2">雙領隊與定點講堂</h4>
+          <p class="text-slate-600 text-xs leading-relaxed">
             配置前導領騎員、隨隊文化策展講師與壓後安全技師，歷史節點下車進行露天短講。
           </p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border-slate-800">
-          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-3">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-3">
             <i data-lucide="shield" class="w-5 h-5"></i>
           </div>
-          <h4 class="font-serif-tc text-base font-bold text-slate-100 mb-2">安全與裝備保險</h4>
-          <p class="text-slate-400 text-xs leading-relaxed">
+          <h4 class="font-serif-tc text-base font-bold text-slate-900 mb-2">安全與裝備保險</h4>
+          <p class="text-slate-600 text-xs leading-relaxed">
             全套提供專業安全帽、衛生內襯、前後車燈、車首置物包與海外單車專屬旅遊保險。
           </p>
         </div>
@@ -597,140 +675,222 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-12 bg-slate-950 border-t border-slate-800 text-center text-xs text-slate-500 font-serif-tc">
-    <p>© 2026 極東義大利・弗留利—斯洛維尼亞—克羅埃西亞 數位策展深旅計畫</p>
-    <p class="mt-2 text-slate-600">Alpe Adria FVG1 • Parenzana D8 • FVG R037 • Slovenian Alpine Route</p>
+  <footer class="py-12 bg-slate-900 text-center text-xs text-slate-400 font-serif-tc">
+    <p class="text-slate-200 font-bold">© 2026 極東義大利・弗留利—斯洛維尼亞—克羅埃西亞 數位策展深旅計畫</p>
+    <p class="mt-2 text-slate-500">Alpe Adria FVG1 • Parenzana D8 • FVG R037 • Slovenian Alpine Route</p>
   </footer>
 
   <!-- Leaflet Scripts -->
   <script>
     lucide.createIcons();
 
-    // Map initialization
+    // Map initialization with bright center
     const map = L.map('map', {
-      center: [45.95, 13.6],
+      center: [45.92, 13.55],
       zoom: 9,
       zoomControl: true,
       scrollWheelZoom: false
     });
 
-    // Dark Tile Layer (CartoDB Dark Matter)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 18
-    }).addTo(map);
+    // Base Tile Layers (Bright and Clear)
+    const baseLayers = {
+      // 1. CARTO Voyager (Bright, crisp, clean pastel terrain)
+      voyager: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }),
+      // 2. OpenTopoMap (Detailed mountain contours and relief)
+      topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
+        maxZoom: 17
+      }),
+      // 3. Standard OSM
+      osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19
+      }),
+      // 4. Esri World Imagery (Satellite)
+      satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri',
+        maxZoom: 18
+      })
+    };
 
-    // Routes Coordinates
+    // Add default base layer: Voyager (Clear, Bright, High Contrast)
+    baseLayers.voyager.addTo(map);
+    let currentBase = 'voyager';
+
+    function changeBaseMap(key) {
+      if (baseLayers[currentBase]) {
+        map.removeLayer(baseLayers[currentBase]);
+      }
+      baseLayers[key].addTo(map);
+      currentBase = key;
+
+      // Update button styles
+      ['voyager', 'topo', 'osm', 'satellite'].forEach(k => {
+        const btn = document.getElementById('btn-bm-' + k);
+        if (k === key) {
+          btn.className = "px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition";
+        }
+      });
+    }
+
+    // Routes Coordinates & Waypoints
     const routesData = {
       r1: {
         name: "Ride 1: Udine → Cividale del Friuli",
-        color: "#f59e0b",
+        subtitle: "倫巴底人的歷史入口 (25km)",
+        color: "#d97706", // Amber 600
+        borderColor: "#78350f",
         coords: [
-          [46.0637, 13.2356], // Udine
+          [46.0637, 13.2356], // Udine Piazza Libertà
+          [46.0480, 13.2650], // Cussignacco
           [46.0350, 13.3080], // Pradamano
           [46.0460, 13.3420], // Cerneglons
+          [46.0590, 13.3750], // Orzano
           [46.0680, 13.3980], // Premariacco
-          [46.0940, 13.4320]  // Cividale
+          [46.0820, 13.4150], // Gagliano
+          [46.0940, 13.4320]  // Cividale del Friuli
         ],
         markers: [
-          { lat: 46.0637, lng: 13.2356, title: "Udine 自由廣場 (起點)" },
-          { lat: 46.0680, lng: 13.3980, title: "Premariacco 納蒂索內河吊橋" },
-          { lat: 46.0940, lng: 13.4320, title: "Cividale 魔鬼橋 & 倫巴底小堂 (終點)" }
+          { lat: 46.0637, lng: 13.2356, label: "1A", title: "Udine 自由廣場", desc: "起點：文藝復興威尼斯總督府迴廊出發" },
+          { lat: 46.0680, lng: 13.3980, label: "1B", title: "Premariacco 吊橋", desc: "眺望納蒂索內河（Natisone）碧綠峽谷" },
+          { lat: 46.0940, lng: 13.4320, label: "1C", title: "Cividale 魔鬼橋 & 倫巴底小堂", desc: "終點：世界文化遺產，倫巴底公國古都" }
         ]
       },
       r2: {
         name: "Ride 2: Palmanova → Aquileia → Grado",
-        color: "#10b981",
+        subtitle: "從星形要塞騎到羅馬帝國的海 (38km)",
+        color: "#059669", // Emerald 600
+        borderColor: "#064e3b",
         coords: [
-          [45.9056, 13.3106], // Palmanova
+          [45.9056, 13.3106], // Palmanova Porta Aquileia
+          [45.8650, 13.3180], // Privano
           [45.8350, 13.3280], // Strassoldo
-          [45.8200, 13.3360], // Cervignano
-          [45.7690, 13.3680], // Aquileia
-          [45.7200, 13.3750], // Causeway
+          [45.8200, 13.3360], // Cervignano del Friuli
+          [45.7950, 13.3550], // Terzo d'Aquileia
+          [45.7690, 13.3680], // Aquileia Basilica
+          [45.7500, 13.3710], // Belvedere
+          [45.7150, 13.3760], // Laguna causeway bridge
           [45.6790, 13.3850]  // Grado
         ],
         markers: [
-          { lat: 45.9056, lng: 13.3106, title: "Palmanova 九芒星城聖馬可門 (起點)" },
-          { lat: 45.8350, lng: 13.3280, title: "Strassoldo 水車中世紀城堡" },
-          { lat: 45.7690, lng: 13.3680, title: "Aquileia 羅馬古港與馬賽克大教堂" },
-          { lat: 45.6790, lng: 13.3850, title: "Grado 亞德里亞海潟湖 (終點)" }
+          { lat: 45.9056, lng: 13.3106, label: "2A", title: "Palmanova 九芒星要塞", desc: "起點：威尼斯共和國幾何軍事防禦古城" },
+          { lat: 45.8350, lng: 13.3280, label: "2B", title: "Strassoldo 城堡村", desc: "中世紀護城河水車與哈布斯堡貴族莊園" },
+          { lat: 45.7690, lng: 13.3680, label: "2C", title: "Aquileia 羅馬古港與大教堂", desc: "西羅馬帝國北疆首府，4世紀世界最大鋪地馬賽克" },
+          { lat: 45.6790, lng: 13.3850, label: "2D", title: "Grado 亞德里亞海潟湖", desc: "終點：跨海長堤騎向古老漁港與金色沙灘" }
         ]
       },
       r3: {
         name: "Ride 3: Radovljica → Sava River → Bled",
-        color: "#14b8a6",
+        subtitle: "阿爾卑斯河谷與布萊德湖山麓 (34km)",
+        color: "#0d9488", // Teal 600
+        borderColor: "#134e4a",
         coords: [
           [46.3440, 14.1750], // Radovljica
-          [46.3500, 14.1400], // Sava River Valley
+          [46.3410, 14.1500], // Lancovo
+          [46.3500, 14.1400], // Sava Bohinjka River Valley
+          [46.3550, 14.1150], // Ribno
           [46.3630, 14.0930], // Bled Lake East
-          [46.3620, 14.0650], // Bled Lake West
-          [46.3880, 14.1350], // Žirovnica / Begunje
+          [46.3620, 14.0650], // Bled Lake West / Zaka
+          [46.3750, 14.0950], // Zasip
+          [46.3880, 14.1350], // Begunje
           [46.3440, 14.1750]  // Back to Radovljica
         ],
         markers: [
-          { lat: 46.3440, lng: 14.1750, title: "Radovljica 養蜂博物館 (起終點)" },
-          { lat: 46.3620, lng: 14.0650, title: "Bled 湖西岸秘境視角" }
+          { lat: 46.3440, lng: 14.1750, label: "3A", title: "Radovljica 養蜂古鎮", desc: "起終點：18世紀傳統彩繪蜂箱板文化重鎮" },
+          { lat: 46.3620, lng: 14.0650, label: "3B", title: "Bled 湖西岸秘境", desc: "避開公路車流，從純淨山林視角俯瞰湖心小島" }
         ]
       },
       r4: {
         name: "Ride 4: Piran → Parenzana → Sečovlje",
-        color: "#6366f1",
+        subtitle: "消失的奧匈窄軌鐵路與海鹽之路 (22km)",
+        color: "#4f46e5", // Indigo 600
+        borderColor: "#312e81",
         coords: [
-          [45.5283, 13.5683], // Piran
+          [45.5283, 13.5683], // Piran Tartini
           [45.5140, 13.5920], // Portoroz
-          [45.5270, 13.6060], // Strunjan
+          [45.5270, 13.6060], // Strunjan Saline
           [45.5100, 13.6050], // Valeta Tunnel
           [45.5000, 13.6000], // Lucija
           [45.4850, 13.6150]  // Secovlje Salt Pans
         ],
         markers: [
-          { lat: 45.5283, lng: 13.5683, title: "Piran 塔爾蒂尼廣場 (起點)" },
-          { lat: 45.5100, lng: 13.6050, title: "Valeta 550m 磚石舊火車隧道" },
-          { lat: 45.4850, lng: 13.6150, title: "Sečovlje 古法海鹽田自然公園 (終點)" }
+          { lat: 45.5283, lng: 13.5683, label: "4A", title: "Piran 塔爾蒂尼廣場", desc: "起點：威尼斯哥德式彩色海港小鎮" },
+          { lat: 45.5100, lng: 13.6050, label: "4B", title: "Valeta 550m 磚石舊鐵道隧道", desc: "穿越 1902 年奧匈帝國火車隧道，感受天然空調" },
+          { lat: 45.4850, lng: 13.6150, label: "4C", title: "Sečovlje 古法海鹽田自然公園", desc: "終點：700年古法結晶鹽池與濕地鳥類保護區" }
         ]
       }
     };
 
+    const polylineGroup = L.featureGroup().addTo(map);
     const polylineLayers = {};
-    const markerLayers = [];
 
-    // Draw all routes
+    // Render Routes with contrasting thick border
     Object.keys(routesData).forEach(key => {
       const r = routesData[key];
+      
+      // Base thick border casing
+      L.polyline(r.coords, {
+        color: "#ffffff",
+        weight: 9,
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(polylineGroup);
+
+      // Main colored route line
       const poly = L.polyline(r.coords, {
         color: r.color,
         weight: 5,
-        opacity: 0.85
-      }).addTo(map);
-      poly.bindPopup(`<b>${r.name}</b>`);
+        opacity: 1,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(polylineGroup);
+
+      poly.bindPopup(`
+        <div style="font-family:sans-serif;padding:4px;">
+          <b style="font-size:14px;color:${r.color};">${r.name}</b>
+          <div style="font-size:12px;color:#475569;margin-top:2px;">${r.subtitle}</div>
+        </div>
+      `);
       polylineLayers[key] = poly;
 
+      // Custom Numbered Waypoint Badges
       r.markers.forEach(m => {
-        const marker = L.circleMarker([m.lat, m.lng], {
-          radius: 6,
-          fillColor: r.color,
-          color: "#ffffff",
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0.9
-        }).addTo(map);
-        marker.bindPopup(`<b>${m.title}</b><br><span style="font-size:11px;color:#94a3b8">${r.name}</span>`);
-        markerLayers.push(marker);
+        const customIcon = L.divIcon({
+          className: 'custom-div-icon',
+          html: `<div class="custom-badge-marker" style="background-color: ${r.color}; width: 26px; height: 26px;">${m.label}</div>`,
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
+        });
+
+        const marker = L.marker([m.lat, m.lng], { icon: customIcon }).addTo(polylineGroup);
+        marker.bindPopup(`
+          <div style="font-family:sans-serif;min-width:180px;">
+            <div style="font-size:11px;font-weight:bold;color:${r.color};">${r.name}</div>
+            <div style="font-size:14px;font-weight:bold;color:#0f172a;margin-top:2px;">${m.title}</div>
+            <div style="font-size:12px;color:#475569;margin-top:4px;line-height:1.4;">${m.desc}</div>
+          </div>
+        `);
       });
     });
 
     function focusRoute(routeKey) {
       if (routeKey === 'all') {
-        map.fitBounds([
-          [45.45, 13.15],
-          [46.45, 14.30]
-        ], { padding: [40, 40] });
+        map.fitBounds(polylineGroup.getBounds(), { padding: [50, 50] });
       } else if (polylineLayers[routeKey]) {
-        map.fitBounds(polylineLayers[routeKey].getBounds(), { padding: [50, 50] });
+        map.fitBounds(polylineLayers[routeKey].getBounds(), { padding: [60, 60] });
         polylineLayers[routeKey].openPopup();
       }
     }
+
+    // Initial view fitting all routes
+    map.fitBounds(polylineGroup.getBounds(), { padding: [40, 40] });
   </script>
 </body>
 </html>
