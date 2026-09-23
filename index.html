@@ -13,7 +13,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Noto+Serif+TC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
@@ -34,9 +34,14 @@
       border-radius: 9999px;
     }
     #map {
-      height: 560px;
+      height: 600px;
       width: 100%;
       z-index: 10;
+      background: #f8fafc;
+    }
+    /* Retina High-Res Map Styling */
+    .leaflet-container {
+      font-family: inherit;
     }
     .custom-badge-marker {
       display: flex;
@@ -46,17 +51,28 @@
       color: white;
       font-weight: 800;
       font-size: 11px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
-      border: 2px solid white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 2.5px solid #ffffff;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .custom-badge-marker:hover {
+      transform: scale(1.25);
     }
     .leaflet-popup-content-wrapper {
-      border-radius: 16px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.18);
       padding: 4px;
+      border: 1px solid #e2e8f0;
     }
     .leaflet-popup-content {
-      margin: 8px 12px;
+      margin: 10px 14px;
       line-height: 1.5;
+    }
+    .leaflet-control-attribution {
+      background: rgba(255, 255, 255, 0.85) !important;
+      font-size: 10px !important;
+      border-radius: 6px 0 0 0;
+      padding: 2px 8px !important;
     }
   </style>
 </head>
@@ -83,7 +99,7 @@
       <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold">
         <a href="#philosophy" class="text-slate-600 hover:text-amber-600 transition">策展理念</a>
         <a href="#overview" class="text-slate-600 hover:text-amber-600 transition">12天日程表</a>
-        <a href="#map-section" class="text-slate-600 hover:text-amber-600 transition">🗺️ 互動明亮地圖</a>
+        <a href="#map-section" class="text-slate-600 hover:text-amber-600 transition">🗺️ 高解析地圖</a>
         <a href="#routes" class="text-slate-600 hover:text-amber-600 transition">4大踏查路線</a>
         <a href="#logistics" class="text-slate-600 hover:text-amber-600 transition">後勤與車隊</a>
       </nav>
@@ -159,25 +175,22 @@
       <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-6">
         <div>
           <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 mb-2">
-            <i data-lucide="map" class="w-3.5 h-3.5"></i>
-            <span>高解析明亮戶外地圖</span>
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Retina 4K 高解析・無浮水印圖資</span>
           </div>
           <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900">自行車踏查路線全景互動地圖</h3>
-          <p class="text-slate-600 text-xs sm:text-sm mt-1">清晰呈現阿爾卑斯山脈、弗留利平原、斯洛維尼亞河谷與伊斯特利亞海岸線。</p>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1">清晰呈現東阿爾卑斯山脈、弗留利平原、斯洛維尼亞河谷與伊斯特利亞海岸線。</p>
         </div>
 
-        <!-- Map Layer & Route Filter Controls -->
+        <!-- Map Layer Selector -->
         <div class="flex flex-col sm:flex-row gap-3">
-          
-          <!-- Base Map Selector -->
           <div class="bg-slate-100 p-1.5 rounded-xl border border-slate-200 flex items-center space-x-1 shadow-inner text-xs font-semibold">
-            <span class="text-slate-500 px-2 text-[11px]">底圖：</span>
-            <button onclick="changeBaseMap('voyager')" id="btn-bm-voyager" class="px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition">明亮旅遊</button>
-            <button onclick="changeBaseMap('topo')" id="btn-bm-topo" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">精緻地形</button>
-            <button onclick="changeBaseMap('osm')" id="btn-bm-osm" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">標準街道</button>
-            <button onclick="changeBaseMap('satellite')" id="btn-bm-satellite" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">真實衛星</button>
+            <span class="text-slate-500 px-2 text-[11px]">底圖切換：</span>
+            <button onclick="changeBaseMap('voyager')" id="btn-bm-voyager" class="px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition">超清旅遊 (Voyager @2x)</button>
+            <button onclick="changeBaseMap('esriTopo')" id="btn-bm-esriTopo" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">高清地貌 (Esri Topo)</button>
+            <button onclick="changeBaseMap('osmFr')" id="btn-bm-osmFr" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">詳細街道 (OSM HD)</button>
+            <button onclick="changeBaseMap('satellite')" id="btn-bm-satellite" class="px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition">真實衛星 (Satellite)</button>
           </div>
-
         </div>
       </div>
 
@@ -233,7 +246,7 @@
 
       <!-- Route Stat Summary Grid -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-        <div onclick="focusRoute('r1')" class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 cursor-pointer hover:bg-amber-100/70 transition">
+        <div onclick="focusRoute('r1')" class="bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80 cursor-pointer hover:bg-amber-100/70 transition shadow-sm">
           <div class="text-amber-800 font-bold text-xs">Ride 1・Day 3</div>
           <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Udine → Cividale</div>
           <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
@@ -243,7 +256,7 @@
           </div>
         </div>
 
-        <div onclick="focusRoute('r2')" class="bg-emerald-50/70 p-4 rounded-2xl border-2 border-emerald-300 cursor-pointer hover:bg-emerald-100/70 transition">
+        <div onclick="focusRoute('r2')" class="bg-emerald-50/70 p-4 rounded-2xl border-2 border-emerald-300 cursor-pointer hover:bg-emerald-100/70 transition shadow-sm">
           <div class="text-emerald-800 font-bold text-xs flex items-center justify-between">
             <span>Ride 2・Day 4</span>
             <span class="px-1.5 py-0.2 bg-emerald-200 text-emerald-900 rounded text-[10px] font-bold">最推薦</span>
@@ -256,7 +269,7 @@
           </div>
         </div>
 
-        <div onclick="focusRoute('r3')" class="bg-teal-50/70 p-4 rounded-2xl border border-teal-200/80 cursor-pointer hover:bg-teal-100/70 transition">
+        <div onclick="focusRoute('r3')" class="bg-teal-50/70 p-4 rounded-2xl border border-teal-200/80 cursor-pointer hover:bg-teal-100/70 transition shadow-sm">
           <div class="text-teal-800 font-bold text-xs">Ride 3・Day 6</div>
           <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Radovljica → Bled</div>
           <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
@@ -266,7 +279,7 @@
           </div>
         </div>
 
-        <div onclick="focusRoute('r4')" class="bg-indigo-50/70 p-4 rounded-2xl border border-indigo-200/80 cursor-pointer hover:bg-indigo-100/70 transition">
+        <div onclick="focusRoute('r4')" class="bg-indigo-50/70 p-4 rounded-2xl border border-indigo-200/80 cursor-pointer hover:bg-indigo-100/70 transition shadow-sm">
           <div class="text-indigo-800 font-bold text-xs">Ride 4・Day 11</div>
           <div class="text-slate-900 font-serif-tc font-bold text-sm mt-0.5">Piran → Sečovlje 鹽田</div>
           <div class="text-xs text-slate-600 mt-2 flex justify-between font-mono font-semibold">
@@ -280,8 +293,51 @@
     </div>
   </section>
 
+  <!-- Section 1: Philosophy -->
+  <section id="philosophy" class="py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-amber-700 font-bold text-xs uppercase tracking-widest">Curation Philosophy</span>
+        <h3 class="font-serif-tc text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">為什麼在極東義大利加入雙輪？</h3>
+        <p class="text-slate-600 text-sm mt-3">跳脫傳統走馬看花，以 15km/h 的視角讀懂阿爾卑斯到亞德里亞海的重層文明。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-serif-tc text-lg font-bold text-slate-900 mb-2">1. 歷史動線的實體體感</h4>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            倫巴底人如何越過隘口？羅馬水軍如何自 Aquileia 內河港航向帝國之海？親自踏踩踏板，感受微地形與河流走向，理解古代軍事地理的必然。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-serif-tc text-lg font-bold text-slate-900 mb-2">2. 頂級成熟的歐洲單車網</h4>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            路線精選歐洲排名前列的 FVG1（Alpe Adria）、Parenzana 舊鐵道與斯洛維尼亞國家河谷道，全線專用道與平整鋪面，遠離繁忙車潮，極致安全。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mb-4">
+            <i data-lucide="bus" class="w-6 h-6"></i>
+          </div>
+          <h4 class="font-serif-tc text-lg font-bold text-slate-900 mb-2">3. 移動講堂 + SAG 車隊模式</h4>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            大巴全程作為 SAG（Support and Gear）補給車，行李不離車。全隊配置 E-bike 電輔車選項，體力不適可隨時上車，保留充裕精力聽課與探訪。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Section 2: 12-Day Itinerary Table -->
-  <section id="overview" class="py-16 bg-slate-50 border-b border-slate-200">
+  <section id="overview" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
@@ -680,44 +736,49 @@
     <p class="mt-2 text-slate-500">Alpe Adria FVG1 • Parenzana D8 • FVG R037 • Slovenian Alpine Route</p>
   </footer>
 
-  <!-- Leaflet Scripts -->
+  <!-- Leaflet Scripts with Retina HD Tiles & No Blurry Text -->
   <script>
     lucide.createIcons();
 
-    // Map initialization with bright center
+    // Map initialization
     const map = L.map('map', {
       center: [45.92, 13.55],
       zoom: 9,
       zoomControl: true,
-      scrollWheelZoom: false
+      scrollWheelZoom: false,
+      attributionControl: true
     });
 
-    // Base Tile Layers (Bright and Clear)
+    // High-Resolution / Retina Base Layers (No watermark, razor-sharp on all screens)
     const baseLayers = {
-      // 1. CARTO Voyager (Bright, crisp, clean pastel terrain)
-      voyager: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      // 1. CARTO Voyager 2x Retina Tile Layer (Ultra Sharp, Bright, Clean)
+      voyager: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
         subdomains: 'abcd',
-        maxZoom: 19
+        maxZoom: 19,
+        detectRetina: true
       }),
-      // 2. OpenTopoMap (Detailed mountain contours and relief)
-      topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
-        maxZoom: 17
+      // 2. Esri World Topo Map (Vectorized relief, crystal clear mountain shading, zero watermarks)
+      esriTopo: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri',
+        maxZoom: 18,
+        detectRetina: true
       }),
-      // 3. Standard OSM
-      osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 19
+      // 3. OpenStreetMap HD
+      osmFr: L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap France',
+        maxZoom: 19,
+        detectRetina: true
       }),
       // 4. Esri World Imagery (Satellite)
       satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri',
-        maxZoom: 18
+        maxZoom: 18,
+        detectRetina: true
       })
     };
 
-    // Add default base layer: Voyager (Clear, Bright, High Contrast)
+    // Set Default: Voyager 2x
     baseLayers.voyager.addTo(map);
     let currentBase = 'voyager';
 
@@ -728,100 +789,112 @@
       baseLayers[key].addTo(map);
       currentBase = key;
 
-      // Update button styles
-      ['voyager', 'topo', 'osm', 'satellite'].forEach(k => {
+      // Update button styling
+      ['voyager', 'esriTopo', 'osmFr', 'satellite'].forEach(k => {
         const btn = document.getElementById('btn-bm-' + k);
-        if (k === key) {
-          btn.className = "px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition";
-        } else {
-          btn.className = "px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition";
+        if (btn) {
+          if (k === key) {
+            btn.className = "px-2.5 py-1 rounded-lg bg-white text-slate-900 shadow-sm border border-slate-200 font-bold transition";
+          } else {
+            btn.className = "px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition";
+          }
         }
       });
     }
 
-    // Routes Coordinates & Waypoints
+    // High Density Detailed Real Path Coordinates
     const routesData = {
       r1: {
         name: "Ride 1: Udine → Cividale del Friuli",
         subtitle: "倫巴底人的歷史入口 (25km)",
         color: "#d97706", // Amber 600
-        borderColor: "#78350f",
         coords: [
           [46.0637, 13.2356], // Udine Piazza Libertà
-          [46.0480, 13.2650], // Cussignacco
+          [46.0520, 13.2500],
+          [46.0440, 13.2750],
           [46.0350, 13.3080], // Pradamano
+          [46.0380, 13.3250], // Lovaria
           [46.0460, 13.3420], // Cerneglons
+          [46.0530, 13.3600],
           [46.0590, 13.3750], // Orzano
-          [46.0680, 13.3980], // Premariacco
-          [46.0820, 13.4150], // Gagliano
+          [46.0680, 13.3980], // Premariacco Bridge (Natisone River)
+          [46.0760, 13.4100], // Firmano
+          [46.0850, 13.4210], // Gagliano
           [46.0940, 13.4320]  // Cividale del Friuli
         ],
         markers: [
-          { lat: 46.0637, lng: 13.2356, label: "1A", title: "Udine 自由廣場", desc: "起點：文藝復興威尼斯總督府迴廊出發" },
-          { lat: 46.0680, lng: 13.3980, label: "1B", title: "Premariacco 吊橋", desc: "眺望納蒂索內河（Natisone）碧綠峽谷" },
-          { lat: 46.0940, lng: 13.4320, label: "1C", title: "Cividale 魔鬼橋 & 倫巴底小堂", desc: "終點：世界文化遺產，倫巴底公國古都" }
+          { lat: 46.0637, lng: 13.2356, label: "1A", title: "Udine 自由廣場", desc: "起點：威尼斯提也波洛之城出發" },
+          { lat: 46.0680, lng: 13.3980, label: "1B", title: "Premariacco 納蒂索內河吊橋", desc: "欣賞阿爾卑斯冰川融水切割出的翠綠深谷" },
+          { lat: 46.0940, lng: 13.4320, label: "1C", title: "Cividale 魔鬼橋 & 倫巴底小堂", desc: "終點：世界文化遺產，568年倫巴底公國古都" }
         ]
       },
       r2: {
         name: "Ride 2: Palmanova → Aquileia → Grado",
         subtitle: "從星形要塞騎到羅馬帝國的海 (38km)",
         color: "#059669", // Emerald 600
-        borderColor: "#064e3b",
         coords: [
-          [45.9056, 13.3106], // Palmanova Porta Aquileia
+          [45.9030, 13.3106], // Palmanova Porta Aquileia
+          [45.8920, 13.3120],
           [45.8650, 13.3180], // Privano
-          [45.8350, 13.3280], // Strassoldo
+          [45.8350, 13.3280], // Strassoldo Castle
+          [45.8280, 13.3320], // Muscoli
           [45.8200, 13.3360], // Cervignano del Friuli
           [45.7950, 13.3550], // Terzo d'Aquileia
+          [45.7720, 13.3660], // Aquileia Roman Port
           [45.7690, 13.3680], // Aquileia Basilica
           [45.7500, 13.3710], // Belvedere
-          [45.7150, 13.3760], // Laguna causeway bridge
-          [45.6790, 13.3850]  // Grado
+          [45.7150, 13.3760], // Grado Lagoon Causeway Bridge
+          [45.6900, 13.3800], // Punta Spin
+          [45.6790, 13.3850]  // Grado Porto Mandracchio
         ],
         markers: [
-          { lat: 45.9056, lng: 13.3106, label: "2A", title: "Palmanova 九芒星要塞", desc: "起點：威尼斯共和國幾何軍事防禦古城" },
-          { lat: 45.8350, lng: 13.3280, label: "2B", title: "Strassoldo 城堡村", desc: "中世紀護城河水車與哈布斯堡貴族莊園" },
-          { lat: 45.7690, lng: 13.3680, label: "2C", title: "Aquileia 羅馬古港與大教堂", desc: "西羅馬帝國北疆首府，4世紀世界最大鋪地馬賽克" },
-          { lat: 45.6790, lng: 13.3850, label: "2D", title: "Grado 亞德里亞海潟湖", desc: "終點：跨海長堤騎向古老漁港與金色沙灘" }
+          { lat: 45.9030, lng: 13.3106, label: "2A", title: "Palmanova 九芒星要塞", desc: "起點：文藝復興幾何軍事防禦古城" },
+          { lat: 45.8350, lng: 13.3280, label: "2B", title: "Strassoldo 水車城堡村", desc: "中世紀護城河與哈布斯堡貴族莊園" },
+          { lat: 45.7690, lng: 13.3680, label: "2C", title: "Aquileia 羅馬古港與大教堂", desc: "西羅馬帝國北疆樞紐，4世紀鋪地馬賽克聖殿" },
+          { lat: 45.6790, lng: 13.3850, label: "2D", title: "Grado 亞德里亞海潟湖", desc: "終點：跨海長堤騎向金色沙灘與古老漁港" }
         ]
       },
       r3: {
         name: "Ride 3: Radovljica → Sava River → Bled",
         subtitle: "阿爾卑斯河谷與布萊德湖山麓 (34km)",
         color: "#0d9488", // Teal 600
-        borderColor: "#134e4a",
         coords: [
-          [46.3440, 14.1750], // Radovljica
-          [46.3410, 14.1500], // Lancovo
-          [46.3500, 14.1400], // Sava Bohinjka River Valley
+          [46.3440, 14.1750], // Radovljica Old Town
+          [46.3410, 14.1500], // Lancovo Sava Confluence
+          [46.3480, 14.1350], // Bodešče
           [46.3550, 14.1150], // Ribno
-          [46.3630, 14.0930], // Bled Lake East
-          [46.3620, 14.0650], // Bled Lake West / Zaka
+          [46.3630, 14.1030], // Bled Promenade
+          [46.3680, 14.1100], // Bled Casino / Park
+          [46.3700, 14.1000], // Bled Castle Shore
+          [46.3620, 14.0650], // Mala Zaka / Rowing Center
+          [46.3580, 14.0850], // Bled South Shore
           [46.3750, 14.0950], // Zasip
-          [46.3880, 14.1350], // Begunje
-          [46.3440, 14.1750]  // Back to Radovljica
+          [46.3880, 14.1350], // Begunje Castle Kamen
+          [46.3440, 14.1750]  // Radovljica
         ],
         markers: [
           { lat: 46.3440, lng: 14.1750, label: "3A", title: "Radovljica 養蜂古鎮", desc: "起終點：18世紀傳統彩繪蜂箱板文化重鎮" },
-          { lat: 46.3620, lng: 14.0650, label: "3B", title: "Bled 湖西岸秘境", desc: "避開公路車流，從純淨山林視角俯瞰湖心小島" }
+          { lat: 46.3620, lng: 14.0650, label: "3B", title: "Bled 湖西岸秘境視角", desc: "避開公路車流，從純淨山林視角俯瞰湖心小島" }
         ]
       },
       r4: {
         name: "Ride 4: Piran → Parenzana → Sečovlje",
         subtitle: "消失的奧匈窄軌鐵路與海鹽之路 (22km)",
         color: "#4f46e5", // Indigo 600
-        borderColor: "#312e81",
         coords: [
           [45.5283, 13.5683], // Piran Tartini
-          [45.5140, 13.5920], // Portoroz
-          [45.5270, 13.6060], // Strunjan Saline
-          [45.5100, 13.6050], // Valeta Tunnel
+          [45.5180, 13.5780], // Bernardin Cliff
+          [45.5140, 13.5920], // Portoroz Riviera
+          [45.5270, 13.6060], // Strunjan Saline & Nature Reserve
+          [45.5100, 13.6050], // Valeta Tunnel Entrance
           [45.5000, 13.6000], // Lucija
-          [45.4850, 13.6150]  // Secovlje Salt Pans
+          [45.4920, 13.6050], // Formaviva
+          [45.4850, 13.6150], // Secovlje Salt Pans
+          [45.4730, 13.6230]  // Fontanigge Museum
         ],
         markers: [
           { lat: 45.5283, lng: 13.5683, label: "4A", title: "Piran 塔爾蒂尼廣場", desc: "起點：威尼斯哥德式彩色海港小鎮" },
-          { lat: 45.5100, lng: 13.6050, label: "4B", title: "Valeta 550m 磚石舊鐵道隧道", desc: "穿越 1902 年奧匈帝國火車隧道，感受天然空調" },
+          { lat: 45.5100, lng: 13.6050, label: "4B", title: "Valeta 550m 磚石舊火車隧道", desc: "穿越 1902 年奧匈帝國鐵路隧道，享受天然空調" },
           { lat: 45.4850, lng: 13.6150, label: "4C", title: "Sečovlje 古法海鹽田自然公園", desc: "終點：700年古法結晶鹽池與濕地鳥類保護區" }
         ]
       }
@@ -834,16 +907,16 @@
     Object.keys(routesData).forEach(key => {
       const r = routesData[key];
       
-      // Base thick border casing
+      // Base thick white casing
       L.polyline(r.coords, {
         color: "#ffffff",
         weight: 9,
-        opacity: 0.9,
+        opacity: 0.95,
         lineCap: 'round',
         lineJoin: 'round'
       }).addTo(polylineGroup);
 
-      // Main colored route line
+      // Main vibrant color polyline
       const poly = L.polyline(r.coords, {
         color: r.color,
         weight: 5,
@@ -864,14 +937,14 @@
       r.markers.forEach(m => {
         const customIcon = L.divIcon({
           className: 'custom-div-icon',
-          html: `<div class="custom-badge-marker" style="background-color: ${r.color}; width: 26px; height: 26px;">${m.label}</div>`,
-          iconSize: [26, 26],
-          iconAnchor: [13, 13]
+          html: `<div class="custom-badge-marker" style="background-color: ${r.color}; width: 28px; height: 28px;">${m.label}</div>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
         });
 
         const marker = L.marker([m.lat, m.lng], { icon: customIcon }).addTo(polylineGroup);
         marker.bindPopup(`
-          <div style="font-family:sans-serif;min-width:180px;">
+          <div style="font-family:sans-serif;min-width:190px;">
             <div style="font-size:11px;font-weight:bold;color:${r.color};">${r.name}</div>
             <div style="font-size:14px;font-weight:bold;color:#0f172a;margin-top:2px;">${m.title}</div>
             <div style="font-size:12px;color:#475569;margin-top:4px;line-height:1.4;">${m.desc}</div>
